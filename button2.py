@@ -1,15 +1,19 @@
-from gpiozero import LED, Button
-from signal import pause
+import RPi.GPIO as GPIO
+import time
 
-# Define the LED and Button using BCM pin numbers
-led = LED(16)              # GPIO 16 (physical pin 36)
-button = Button(15, pull_up=True)  # GPIO 15 (physical pin 10), internal pull-up
+GPIO.setmode(GPIO.BCM)       # Use Broadcom GPIO numbering
+LED_PIN = 16  # GPIO pin 16 (physical pin 36 on Pi Zero 2 W header)
+BUTTON_PIN = 15
+GPIO.setup(BUTTON_PIN, GPIO.IN)
+GPIO
+try:
+    while True:
+        state = GPIO.input(BUTTON_PIN)
+        GPIO.output(LED_PIN, state)  # LED ON when button is pressed
+        print(f"Button State: {state}")  # 0 = pressed if using pull-down, 1 = released
+        time.sleep(0.1)
 
-# Turn LED ON when button is pressed
-button.when_pressed = led.on
-
-# Turn LED OFF when button is released
-button.when_released = led.off
-
-# Keep the script running to listen for events
-pause()
+except KeyboardInterrupt:
+    pass
+finally:
+    GPIO.cleanup()

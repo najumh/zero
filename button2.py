@@ -10,9 +10,7 @@ try:
     while True:
         state = GPIO.input(BUTTON_PIN)
         GPIO.output(LED_PIN, state)  # LED ON when button is pressed
-        print(f"Button State: {state}")  # 0 = pressed if using pull-down, 1 = released
-        time.sleep(0.1)
-
+        
 except KeyboardInterrupt:
     pass
 finally:

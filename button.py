@@ -11,7 +11,9 @@ GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Button with pull-up
 
 try:
     while True:
-        if GPIO.input(BUTTON_PIN) == GPIO.LOW:
+        state = GPIO.input(BUTTON_PIN)
+        print(f"Button State: {state}")
+        if state == GPIO.LOW:
             GPIO.output(LED_PIN, GPIO.HIGH)  # LED ON when button is pressed
         else:
             GPIO.output(LED_PIN, GPIO.LOW)   # LED OFF

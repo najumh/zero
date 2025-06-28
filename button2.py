@@ -5,7 +5,7 @@ GPIO.setmode(GPIO.BCM)       # Use Broadcom GPIO numbering
 LED_PIN = 16  # GPIO pin 16 (physical pin 36 on Pi Zero 2 W header)
 BUTTON_PIN = 15
 GPIO.setup(BUTTON_PIN, GPIO.IN)
-GPIO
+GPIO.setup(LED_PIN, GPIO.OUT)  # Set up LED pin as output
 try:
     while True:
         state = GPIO.input(BUTTON_PIN)
